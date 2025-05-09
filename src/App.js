@@ -13,10 +13,9 @@ function App() {
     <Router>
       <CommonLayout>
       <Routes>
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/layout" element={<ProtectedRoute><Layout /></ProtectedRoute>}></Route>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/layout" element={<ProtectedRoute><Layout /></ProtectedRoute>}></Route>
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       </Routes>
       </CommonLayout>

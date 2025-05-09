@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const Header = () => {
   const location = useLocation();
@@ -23,7 +25,19 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      <h2 style={{ margin: 0 }}>My App</h2>
+      <h2 style={{ margin: 0 }}>Ansari Store</h2>
+
+      {isLoggedIn && location.pathname !== "/login" && (
+          <div style={{
+            marginLeft: "auto",
+            paddingRight: "20px"
+            }}>
+          <Stack direction="row" spacing={2}>
+          <Button variant="outlined" style={{color:"white"}}> Dashboard</Button>
+          <Button variant="outlined" style={{color:"white"}}> Manage Items</Button>
+        </Stack>
+        </div>
+        )}
 
       <div>
         {!isLoggedIn && location.pathname === "/" && (
