@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import '../css/header.css'
 import { FaHome } from "react-icons/fa"
-import { AiOutlineBars } from "react-icons/ai";
 
 const Header = () => {
   const location = useLocation();
@@ -26,9 +25,11 @@ const Header = () => {
   return (
     <header
       style={{
-        backgroundColor: "#f6f7f8",
+        //backgroundColor: "#f6f7f8",
+        backgroundColor: "black",
         padding: ".5rem 2rem",
-        color: "#474141",
+        //color: "#474141",
+        color: "white",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -36,8 +37,9 @@ const Header = () => {
     >
       <span onClick={handleIconClick} style={{cursor: 'pointer'}}> 
         <FaHome size="30px" color="#13b0c1" />
+        {/* <img src={myIcon} alt="|" /> */}
       </span>
-      <AiOutlineBars style={{paddingLeft: "4px"}} size="23px" />
+      <span style={{paddingLeft: '10px'}}>|</span>
      
       <h3 style={{ margin: 0, paddingLeft: "10px"}}>Ansari Store</h3>
       <div style={{ marginLeft: "auto", paddingRight: "20px", minWidth: "250px" }}>
@@ -45,12 +47,16 @@ const Header = () => {
         <Stack direction="row" spacing={2}>
           <Button variant="text"
               style={{ 
-                color: "#474141",
+                //color: "#474141",
+                color: "white",
               }} 
               href="/manageProducts">
             Manage Products
           </Button>
-          <Button variant="text" style={{ color: "#474141" }}>
+          <Button variant="text" style={{ 
+            //color: "#474141"
+            color: "white",
+             }}>
             Order Summary
           </Button>
         </Stack>

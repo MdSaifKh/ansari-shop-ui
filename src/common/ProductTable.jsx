@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductTable({ productList }) {
   return (
-    <div style={{ padding: '2rem', backgroundColor: '#ffffff', minHeight: '100vh' }}>
+    <div style={{ padding: '2rem', backgroundColor: 'rgba(255, 255, 255, 0.1)', minHeight: '100vh' }}>
        <h2>Product List</h2>
       <table className="styled-table">
         <thead>
@@ -40,7 +40,8 @@ function ProductTable({ productList }) {
           border-collapse: collapse;
           margin: 0 auto;
           font-size: 16px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          background-color: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
         }
 
         .styled-table thead tr {
@@ -59,9 +60,7 @@ function ProductTable({ productList }) {
           border-bottom: 1px solid #ddd;
         }
 
-        .styled-table tbody tr:nth-of-type(even) {
-          background-color: #f9f9f9;
-        }
+        
 
         .styled-table tbody tr:hover {
           background-color: #f1f1f1;

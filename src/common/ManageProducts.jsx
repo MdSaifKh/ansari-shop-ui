@@ -153,7 +153,7 @@ const ManageProducts = () => {
 
         .page-wrapper {
           min-height: 100vh;
-          background-color: white;
+          background-color: rgba(255, 255, 255, 0.1);
           display: flex;
           justify-content: center;
           align-items: flex-start;
@@ -182,7 +182,7 @@ const ManageProducts = () => {
 
         .product-form input,
         .product-form textarea {
-          width: 100%;
+          width: 95%;
           padding: 0.75rem;
           margin-bottom: 1rem;
           border: 1px solid #ccc;
