@@ -2,9 +2,9 @@ const Footer = () => {
     return (
         <footer
           style={{
-            backgroundColor: "#000000",
-            color: "white",
-            padding: "2rem",
+            backgroundColor: "#f6f7f8",
+            color: "#474141",
+            padding: "1rem 2rem",
             display: "flex",
             justifyContent: "space-between",
             flexWrap: "wrap",

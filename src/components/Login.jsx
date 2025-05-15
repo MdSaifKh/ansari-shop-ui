@@ -21,7 +21,7 @@ function Login() {
       const token = data.token;
       if (token) {
         localStorage.setItem('token', token);
-        navigate('/welcome');
+        navigate('/dashboard');
       } else {
         alert(data.error);
       }

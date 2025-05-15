@@ -2,10 +2,9 @@ import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import ProtectedRoute from './route/ProtectedRoute';
-import Layout from './route/Layout';
-import Welcome from './components/Welcome';
 import Dashboard from './components/Dashboard';
 import CommonLayout from './common/CommonLayout'
+import ManageProducts from './common/ManageProducts'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -16,9 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/layout" element={<ProtectedRoute><Layout /></ProtectedRoute>}></Route>
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/welcome" element={<ProtectedRoute><Welcome /></ProtectedRoute>} />
+        <Route path="/manageProducts" element={<ProtectedRoute><ManageProducts /></ProtectedRoute>} />
       </Routes>
       </CommonLayout>
     </Router>

@@ -1,13 +1,15 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import SvgIcon from '@mui/material/SvgIcon';
 import '../css/header.css'
+import { FaHome } from "react-icons/fa"
+import { AiOutlineBars } from "react-icons/ai";
 
 const Header = () => {
   const location = useLocation();
   const isLoggedIn = !!localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (isLoggedIn) {
@@ -16,53 +18,50 @@ const Header = () => {
     }
   };
 
-  function HomeIcon(props) {
-    return (
-      <SvgIcon {...props}>
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-      </SvgIcon>
-    );
+  const handleIconClick = () =>{
+    console.log("icon clicked");
+    navigate('/dashboard');
   }
 
   return (
     <header
       style={{
-        backgroundColor: "#000000",
-        padding: "1rem 2rem",
-        color: "white",
+        backgroundColor: "#f6f7f8",
+        padding: ".5rem 2rem",
+        color: "#474141",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
       }}
     >
-      <Stack direction="row" spacing={2}>
-      <HomeIcon fontSize="large" color="primary" />
-      </Stack>
-      <h2 style={{ margin: 0, paddingLeft: "10px"}}>Ansari Store</h2>
-
+      <span onClick={handleIconClick} style={{cursor: 'pointer'}}> 
+        <FaHome size="30px" color="#13b0c1" />
+      </span>
+      <AiOutlineBars style={{paddingLeft: "4px"}} size="23px" />
+     
+      <h3 style={{ margin: 0, paddingLeft: "10px"}}>Ansari Store</h3>
       <div style={{ marginLeft: "auto", paddingRight: "20px", minWidth: "250px" }}>
-  {isLoggedIn && location.pathname !== "/login" ? (
-    <Stack direction="row" spacing={2}>
-      <Button variant="outlined" 
-      style={{ 
-        color: "white",
-        backgroundColor: "#3B82F6"
-       }} 
-      href="/dashboard">
-        Dashboard
-      </Button>
-      <Button variant="outlined" style={{ color: "white", backgroundColor: "#3B82F6" }}>
-        Manage Items
-      </Button>
-    </Stack>
-  ) : (
-    // Invisible placeholders to preserve layout space
-    <Stack direction="row" spacing={2} style={{ visibility: "hidden" }}>
-      <Button variant="outlined">Placeholder</Button>
-      <Button variant="outlined">Placeholder</Button>
-    </Stack>
-  )}
-</div>
+      {isLoggedIn && location.pathname !== "/login" ? (
+        <Stack direction="row" spacing={2}>
+          <Button variant="text"
+              style={{ 
+                color: "#474141",
+              }} 
+              href="/manageProducts">
+            Manage Products
+          </Button>
+          <Button variant="text" style={{ color: "#474141" }}>
+            Order Summary
+          </Button>
+        </Stack>
+      ) : (
+     // Invisible placeholders to preserve layout space
+      <Stack direction="row" spacing={2} style={{ visibility: "hidden" }}>
+        <Button variant="outlined">Placeholder</Button>
+        <Button variant="outlined">Placeholder</Button>
+      </Stack>
+      )}
+      </div>
 
 
       <div>
