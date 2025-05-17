@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const productSuggestions = [
   'Apple iPhone 15',
@@ -14,6 +14,11 @@ const productSuggestions = [
 ];
 
 const ManageProducts = () => {
+  const location = useLocation();
+  const [isEdit, setIsEdit] = useState(false);
+  const [productName, setProductName] = useState('');
+  const formHeader = isEdit ? "Update Product" : "Add New Product";
+  const submitLabel = isEdit ? "Update Product" : "Add Product"
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -26,9 +31,9 @@ const ManageProducts = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
-  const addProducts = async () => {
-    const response = await fetch('http://localhost:8080/api/product/save', {
-      method: 'POST',
+  const addProducts = async (endPoint, methodType) => {
+    const response = await fetch(`http://localhost:8080/api/product/${endPoint}`, {
+      method: methodType,
       headers: { 
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -37,8 +42,32 @@ const ManageProducts = () => {
     });
     console.log("response", response);
     if (response.ok) {
-        alert('Product added successfully!');
-        console.log("Submitted Product:", formData);
+        const res = await response.text();
+        console.log("res", res);
+        if(res.includes('Product already exists with this name'))
+          alert(res);
+        else{
+          alert('Product added successfully!');
+        }
+        setIsEdit(false);
+    }
+    if(response.status === 401){
+        localStorage.removeItem('token');
+        navigate('/Login');
+    }
+  };
+
+   const fetchProduct = async (productName) => {
+    const response = await fetch(`http://localhost:8080/api/product/find/${productName}`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    if (response.ok) {
+        const data = await response.json();
+        setFormData(data)
     }
     if(response.status === 401){
         localStorage.removeItem('token');
@@ -48,9 +77,6 @@ const ManageProducts = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("e.target", e.target);
-    console.log("name", name);
-    console.log("value", value);
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -75,15 +101,28 @@ const ManageProducts = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can replace this with an API call to save the product
-    addProducts();
+    if(isEdit)
+      addProducts("update","PUT");
+    else
+      addProducts("save","POST");
     setFormData({ name: '', description: '', stock: '', cost: '', sellingPrice: '' });
   };
-
+  useEffect(() =>{
+    if(location.state){
+      setProductName(location.state.name);
+      setIsEdit(true); 
+    }
+  },[location.state]);
+  useEffect(() =>{
+    if(productName){
+      fetchProduct(productName);
+    }
+  },[productName]);
 
   return (
     <div className="page-wrapper">
       <form className="product-form" onSubmit={handleSubmit}>
-        <h2>Add New Product</h2>
+        <h2>{formHeader}</h2>
 
         <label>Product Name</label>
         <input
@@ -121,27 +160,25 @@ const ManageProducts = () => {
           placeholder="Enter stock quantity"
         />
 
-        <label>Cost Price ($)</label>
+        <label>Cost Price (Rs)</label>
         <input
           type="number"
-          step="0.01"
           name="cost"
           value={formData.cost}
           onChange={handleChange}
           placeholder="Enter cost price"
         />
 
-        <label>Selling Price ($)</label>
+        <label>Selling Price (Rs)</label>
         <input
           type="number"
-          step="0.01"
           name="sellingPrice"
           value={formData.sellingPrice}
           onChange={handleChange}
           placeholder="Enter selling price"
         />
 
-        <button type="submit">Add Product</button>
+        <button type="submit">{submitLabel}</button>
       </form>
 
       <style>{`

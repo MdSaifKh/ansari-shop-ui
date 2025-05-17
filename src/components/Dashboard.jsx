@@ -36,11 +36,15 @@ function Dashboard() {
 
 
   return (
+    <>
     <div>
       {productList && (
-        <ProductTable productList={productList} />
+        <ProductTable 
+        productList={productList} 
+        />
       )}
     </div>
+    </>
   );
 }
 
