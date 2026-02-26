@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function ProductTable({ productList }) {
@@ -137,7 +137,7 @@ function ProductTable({ productList }) {
         >
           Next
         </button>
-      </div>
+      </div>
 
       {/* Inline style for page background (optional if handled globally) */}
       <style>{`

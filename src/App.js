@@ -5,6 +5,7 @@ import ProtectedRoute from './route/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import CommonLayout from './common/CommonLayout'
 import ManageProducts from './common/ManageProducts'
+import InvoiceApp from './common/InvoiceApp'
 import bgImage from './asset/background.jpg';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/manageProducts" element={<ProtectedRoute><ManageProducts /></ProtectedRoute>} />
+        <Route path="/invoice" element={<ProtectedRoute><InvoiceApp /></ProtectedRoute>} />
       </Routes>
       </CommonLayout>
     </Router>
