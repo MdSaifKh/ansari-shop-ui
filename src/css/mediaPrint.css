@@ -1,0 +1,24 @@
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .invoice-card, .invoice-card * {
+    visibility: visible !important;
+  }
+
+  .invoice-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Hide Remove button and its cell in print, including table header */
+  th.remove-btn-header,
+  td.remove-btn-cell,
+  .remove-btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}

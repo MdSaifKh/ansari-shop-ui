@@ -1,0 +1,72 @@
+.invoice-app {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: #f9fafb;
+}
+
+.product-form,
+.invoice-card {
+  width: 50%;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.invoice-action-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  padding: 0.45rem 1.2rem;
+  margin: 0 0.2rem;
+  min-width: 120px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  cursor: pointer;
+}
+.invoice-action-btn:disabled {
+  background: #bdbdbd;
+  color: #f5f5f5;
+  cursor: not-allowed;
+}
+.print-btn {
+  background: #388e3c;
+}
+.print-btn:disabled {
+  background: #a5d6a7;
+}
+.finish-btn {
+  background: #1976d2;
+}
+.finish-btn:disabled {
+  background: #bdbdbd;
+}

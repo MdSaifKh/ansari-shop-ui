@@ -1,6 +1,6 @@
 import { useState } from "react";
-import {useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import './Login.css'; // ✅ Import the CSS file
 
 function Login() {
   const [userName, setUsername] = useState('');
@@ -15,39 +15,42 @@ function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userName, password })
     });
+
     if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-        if(token){
-          localStorage.setItem('token', token); // Store JWT
-          navigate('/dashboard');
-        }else{
-          alert(data.error);
-        }
+      const data = await response.json();
+      const token = data.token;
+      if (token) {
+        localStorage.setItem('token', token);
+        navigate('/dashboard');
+      } else {
+        alert(data.error);
+      }
     } else {
       alert('Login failed');
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        value={userName}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container">
+      <form onSubmit={handleLogin} className="login-form">
+        <h2>Login</h2>
+        <input
+          type="text"
+          value={userName}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          required
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
 
